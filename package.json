@@ -1,0 +1,31 @@
+{
+  "name": "kartikay-remotion",
+  "version": "1.0.0",
+  "description": "Tal Boss — candidate profile scroll-through (Remotion)",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio",
+    "skills": "remotion skills",
+    "render": "remotion render ProfileScroll out/profile.mp4 --codec=h264 --crf=18",
+    "render:short": "remotion render ProfileScrollShort out/profile-short.mp4 --codec=h264 --crf=18",
+    "gif": "remotion render ProfileScroll out/profile.gif --codec=gif --every-nth-frame=2 --number-of-gif-loops=0 --scale=0.5",
+    "gif:short": "remotion render ProfileScrollShort out/profile-short.gif --codec=gif --every-nth-frame=2 --number-of-gif-loops=0 --scale=0.5",
+    "gif:final": "remotion render src/index.ts ProfileScroll out/profile.mp4 --codec=h264 --crf=18 && ffmpeg -y -i out/profile.mp4 -vf \"fps=15,scale=540:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3\" -loop 0 out/profile-optimized.gif && gifsicle -O3 --lossy=60 --colors 128 out/profile-optimized.gif -o out/profile-final.gif",
+    "still": "remotion still ProfileScroll out/still.png",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.469",
+    "@remotion/google-fonts": "^4.0.469",
+    "@remotion/shapes": "^4.0.469",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "remotion": "^4.0.469"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@types/web": "^0.0.349",
+    "typescript": "^6.0.3"
+  }
+}
