@@ -26,6 +26,7 @@ const raw = {
   green50: "#238c58",
   green60: "#1f593c",
   creme: "#fcf9df",
+  cream10: "#f4f2ec", // warm cream — bg of the profile's closing section (from the SVG export)
 } as const;
 
 export const theme = {
@@ -38,6 +39,7 @@ export const theme = {
     chipBg: raw.surface25,
     screenBg: raw.surface00,
     surface: raw.surface00,
+    canvasBg: raw.cream10, // SheetReveal backdrop + logo intro bg
     // text
     ink: raw.grey80,
     inkMuted: raw.surface60,

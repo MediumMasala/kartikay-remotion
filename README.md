@@ -8,10 +8,23 @@ calm, deliberate product walkthrough that pauses on the moments that sell.
 
 | ID | Duration | Purpose |
 |---|---|---|
-| `ProfileScroll` | 14s (420f @30) | Full walkthrough |
-| `ProfileScrollShort` | ~10s (300f @30) | Landing-hero cut: hero → Codeforces → Tal Score |
+| **`ProfileSheet`** | **22s (660f @30), 720×900** | **CURRENT — pixel-exact sheet reveal (see below)** |
+| `ProfileScroll` | 14s (420f @30), 1080×1920 | Legacy component rebuild (inaccurate below the hero) |
+| `ProfileScrollShort` | ~10s (300f @30) | Legacy landing cut |
 
-Both accept `showDeviceFrame: boolean` (default `true`). `false` = full-bleed, no bezel, for embedding in other mockups.
+**`ProfileSheet`** renders the *actual Figma export* — no component guessing.
+`public/assets/profile-sheet.svg` is a manual SVG export of the profile frame
+(393×5880, text outlined, photos embedded as base64), done from the Figma app
+because the MCP quota clamps tall exports. Flow: TalBoss wordmark fades on cream
+`#f4f2ec` → the sheet rises from below at **75% width**, centred, and glides to
+the end in one velocity-continuous ease (quad-in → linear → quad-out,
+`scrollP` in `src/SheetReveal.tsx`), growing past full-bleed (105%) so its
+rounded side borders exit the frame; it rests on the tab-bar chrome, then
+dissolves to bg for a seamless loop. The SVG is laid out at 2× natural width so
+every displayed size is a downscale (always crisp). Accuracy is by construction
+— the design IS the source file.
+
+Legacy comps accept `showDeviceFrame: boolean` (default `true`).
 
 ## How it was built (important)
 
