@@ -29,10 +29,10 @@ const END_OVERSHOOT = 28; // rest 28px past the bottom so the sheet's bottom cor
 const LOGO_IN: readonly [number, number] = [0, 12];
 const LOGO_OUT: readonly [number, number] = [46, 62];
 const SCROLL_START = 56; // sheet starts rising as the logo clears
-const SCROLL_DUR = 540; // 18s glide through the whole profile
+const SCROLL_DUR = 660; // 22s glide through the whole profile
 const RAMP = 90; // ease ramp at each end (velocity-continuous)
 const END_FADE = 20; // dissolve to bg → seamless loop back to the logo
-export const SHEET_DURATION = 660; // 22s
+export const SHEET_DURATION = 780; // 26s
 
 // Quad-in → linear cruise → quad-out, with matched velocity at the joints
 // (no stutter): v = 1/(D−R); ramps each cover v·R/2 of the progress.

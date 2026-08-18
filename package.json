@@ -7,7 +7,7 @@
     "dev": "remotion studio",
     "skills": "remotion skills",
     "render": "remotion render ProfileSheet out/profile-sheet.mp4 --codec=h264 --crf=18",
-    "gif:final": "remotion render ProfileSheet out/profile-sheet.mp4 --codec=h264 --crf=18 && ffmpeg -y -i out/profile-sheet.mp4 -vf \"fps=10,scale=440:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=96[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5\" -loop 0 out/profile-sheet-optimized.gif && gifsicle -O3 --lossy=150 --colors 96 out/profile-sheet-optimized.gif -o out/profile-sheet.gif",
+    "gif:final": "remotion render ProfileSheet out/profile-sheet.mp4 --codec=h264 --crf=18 && ffmpeg -y -i out/profile-sheet.mp4 -vf \"fps=30,scale=440:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=96[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5\" -loop 0 out/profile-sheet-optimized.gif && gifsicle -O3 --lossy=150 --colors 96 out/profile-sheet-optimized.gif -o out/profile-sheet.gif",
     "render:legacy": "remotion render ProfileScroll out/profile.mp4 --codec=h264 --crf=18",
     "render:legacy-short": "remotion render ProfileScrollShort out/profile-short.mp4 --codec=h264 --crf=18",
     "still": "remotion still ProfileSheet out/still.png",
