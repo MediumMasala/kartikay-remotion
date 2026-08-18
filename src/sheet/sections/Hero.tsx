@@ -14,14 +14,14 @@ export const Hero: React.FC = () => (
         src={staticFile("assets/sheet/image1.png")}
         style={{ position: "absolute", left: -18, top: -23, width: 429, height: 400 }}
       />
-      {/* fade into the white sheet */}
-      <div
-        style={{
-          position: "absolute", left: 0, top: 298, width: 393, height: 79,
-          background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #ffffff 88%)",
-        }}
-      />
     </div>
+    {/* White sheet overlaps the crisp photo with a rounded-top curve (no fade) */}
+    <div
+      style={{
+        position: "absolute", left: 0, top: 350, width: 393, height: 80,
+        background: "#ffffff", borderRadius: "20px 20px 0 0",
+      }}
+    />
     <ExtG name="statusBar" />
     <ExtG name="topActions" />
     <ExtG name="carouselDots" />
