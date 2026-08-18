@@ -12,17 +12,32 @@ calm, deliberate product walkthrough that pauses on the moments that sell.
 | `ProfileScroll` | 14s (420f @30), 1080×1920 | Legacy component rebuild (inaccurate below the hero) |
 | `ProfileScrollShort` | ~10s (300f @30) | Legacy landing cut |
 
-**`ProfileSheet`** renders the *actual Figma export* — no component guessing.
-`public/assets/profile-sheet.svg` is a manual SVG export of the profile frame
-(393×5880, text outlined, photos embedded as base64), done from the Figma app
-because the MCP quota clamps tall exports. Flow: TalBoss wordmark fades on cream
-`#f4f2ec` → the sheet rises from below at **75% width**, centred, and glides to
-the end in one velocity-continuous ease (quad-in → linear → quad-out,
-`scrollP` in `src/SheetReveal.tsx`), growing past full-bleed (105%) so its
-rounded side borders exit the frame; it rests on the tab-bar chrome, then
-dissolves to bg for a seamless loop. The SVG is laid out at 2× natural width so
-every displayed size is a downscale (always crisp). Accuracy is by construction
-— the design IS the source file.
+**`ProfileSheet`** is a **full CODE rebuild** of the design (`src/sheet/*`),
+**60fps, 26s, rendered at 2× (1440×1800)**. The ground truth is
+`public/assets/profile-sheet.svg` — a manual Figma export (393×5880, text
+outlined, photos embedded) — from which everything was machine-extracted:
+
+- `src/sheet/extracted.ts` — verbatim vector slices (icons, chart line + glow,
+  gauge, language bar, status bar, tab bar) pulled by `emit_v3.py` with the real
+  ancestor `<g>` chains (inheritance, group transforms, display-p3 styles,
+  filters). Regenerate with the scripts in the session scratchpad.
+- `src/sheet/heatmap.ts` — the exact 17×7 contribution grid, pixel-sampled from
+  a 3× render of the export.
+- `public/assets/sheet/image0..12.png` — the 13 embedded photos, decoded out.
+- `src/sheet/tokens.ts` — the export's hex → display-p3 map (`c()`), SF/serif
+  font stacks.
+- Sections live in `src/sheet/sections/*`; copy was transcribed from 3× crops
+  (SheetCrop rig) and every section was verified against the export
+  side-by-side via the `CodeCrop` rig until it matched.
+
+Flow: TalBoss wordmark fades on cream `#f4f2ec` → the sheet rises from below at
+**75% width**, centred, and glides to the end in one velocity-continuous ease
+(quad-in → linear → quad-out, `scrollP`, timing authored in seconds), growing
+past full-bleed (105%) so its rounded side borders exit the frame; it rests on
+the tab-bar chrome, then dissolves to bg for a seamless loop.
+
+**Verify accuracy anytime:** render `SheetCrop` (the SVG) and `CodeCrop` (the
+rebuild) at the same `--props='{"y":<offset>}'` and diff the PNGs.
 
 Legacy comps accept `showDeviceFrame: boolean` (default `true`).
 
